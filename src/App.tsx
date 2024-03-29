@@ -8,7 +8,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Protected >        <AddBook />
+      <Protected> 
+         <AddBook />
       </Protected>
     ),
   },
@@ -20,10 +21,6 @@ const router = createBrowserRouter([
 
 function App() {
   return <RouterProvider router={router}></RouterProvider>;
-  // <div>
-  // <SignUp />
-  // {/* <AddBook /> */}
-  // </div>
 }
 
 export default App;

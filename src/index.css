@@ -1,3 +1,8 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
+.btn {
+    margin-left: 400px;
+    cursor: pointer;
+}

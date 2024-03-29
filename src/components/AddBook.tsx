@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { deleteUser, getAuth } from "firebase/auth";
+import {  db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
   const [title, setTitle] = useState("");
   const [books, setBooks] = useState<any>([]);
-  const [loading,setLoading]=useState(false);
-
+  const [loading, setLoading] = useState(false);
+const navigate=useNavigate();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (title) {
@@ -16,7 +18,7 @@ const AddBook = () => {
       });
       setBooks([...books, { id: ref.id, title }]);
       setLoading(false);
-      setTitle('');
+      setTitle("");
     }
   };
 
@@ -32,9 +34,23 @@ const AddBook = () => {
     getData();
   }, []);
 
+  const logOut = () => {
+    const auth = getAuth();
+    const user:any = auth.currentUser;
+    deleteUser(user)
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => console.log(error)
+      );
+  };
+
   return (
     <div>
       <h1>Add Book</h1>
+      <button onClick={logOut} className="btn">
+        Sign out
+      </button>
       <form onSubmit={handleSubmit}>
         <input
           value={title}
@@ -42,7 +58,9 @@ const AddBook = () => {
           type="text"
           placeholder="enter book name"
         />
-        <button disabled={loading} className="border-2">{loading?"Loading...":"Add"}</button>
+        <button disabled={loading} className="border-2">
+          {loading ? "Loading..." : "Add"}
+        </button>
       </form>
 
       <ul>
