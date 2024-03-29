@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth } from "./firebase";
 import { useEffect, useState } from "react";
 
 const Protected = ({children }:{children: React.ReactNode}) => {

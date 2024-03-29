@@ -2,14 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 import AddBook from "./components/AddBook";
 import SignUp from "./components/SignUp";
 import { RouterProvider } from "react-router-dom";
-import Protected from "./components/Protected";
+import Protected from "./Protected";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Protected> 
-         <AddBook />
+      <Protected>
+        <AddBook />
       </Protected>
     ),
   },
